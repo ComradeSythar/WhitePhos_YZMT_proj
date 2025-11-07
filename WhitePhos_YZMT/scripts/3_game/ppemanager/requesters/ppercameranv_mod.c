@@ -1,5 +1,3 @@
-//https://chatgpt.com/share/68899f26-9bb4-800e-9d02-b887891d338b
-
 modded class PPERequester_CameraNV extends PPERequester_GameplayBase
 {
 
@@ -19,46 +17,46 @@ modded class PPERequester_CameraNV extends PPERequester_GameplayBase
 		///////////////////////////////
 		//Basic Configs
 		
-		autoptr array<float> m_OverlayColor = { 0.0, 0.22, 0.27, 0 };
-		autoptr array<float> m_OverlayColor2ndLayer = { 0.0, 0.22, 0.27, 0 };
-		autoptr array<float> m_OverlayColorDaytime = { 0.0, 0.10, 0.27, 1 };
-		autoptr array<float> m_OverlayColorOptics = { 0.0, 0.24, 0.27, 0 };
+		autoptr array<float> m_OverlayColor = WP_YZMT_Settings.Get().OverlayColor;
+		autoptr array<float> m_OverlayColor2ndLayer = WP_YZMT_Settings.Get().OverlayColor2ndLayer;
+		autoptr array<float> m_OverlayColorDaytime = WP_YZMT_Settings.Get().OverlayColorDaytime;
+		autoptr array<float> m_OverlayColorOptics = WP_YZMT_Settings.Get().OverlayColorOptics;
 		
-		float m_DesaturationAmt = 0.175; 
-		float m_DesaturationAmtDaytime = 0.3;
-		float m_FilmGrainSharpness = 4.8;	
-		float m_FilmGrainSharpnessDaytime = 5.7;
-		float m_FilmGrainSize = 2.0; 
-		float m_FilmGrainSizeDaytime = 1;
-		float m_FilmGrainFrequency = 1; 
-		float m_FilmGrainFrequencyOptics = 1; 
-		float m_FilmGrainFrequencyDaytime = 8;
-		float m_LightIntensityAmp_NV = 5.8;
-		float m_LightIntensityAmp_Daytime = 2.5;
+		float m_DesaturationAmt = WP_YZMT_Settings.Get().DesaturationAmt; 
+		float m_DesaturationAmtDaytime = WP_YZMT_Settings.Get().DesaturationAmtDaytime;
+		float m_FilmGrainSharpness = WP_YZMT_Settings.Get().FilmGrainSharpness;	
+		float m_FilmGrainSharpnessDaytime = WP_YZMT_Settings.Get().FilmGrainSharpnessDaytime;
+		float m_FilmGrainSize = WP_YZMT_Settings.Get().FilmGrainSize; 
+		float m_FilmGrainSizeDaytime = WP_YZMT_Settings.Get().FilmGrainSizeDaytime;
+		float m_FilmGrainFrequency = WP_YZMT_Settings.Get().FilmGrainFrequency; 
+		float m_FilmGrainFrequencyOptics = WP_YZMT_Settings.Get().FilmGrainFrequencyOptics; 
+		float m_FilmGrainFrequencyDaytime = WP_YZMT_Settings.Get().FilmGrainFrequencyDaytime;
+		float m_LightIntensityAmp_NV = WP_YZMT_Settings.Get().LightIntensityAmp_NV;
+		float m_LightIntensityAmp_Daytime = WP_YZMT_Settings.Get().LightIntensityAmp_Daytime;
 				
-		float m_DefaultGogglesContrast = 0.85;
+		float m_DefaultGogglesContrast = WP_YZMT_Settings.Get().DefaultGogglesContrast;
 		
-		autoptr array<float> m_Overlay1ColorMult = { 0.0,0.02,0.02,0 };
-		float m_Overlay1LightMultFact = 0;
-		float m_Overlay1LightMultNoise = 0;
+		autoptr array<float> m_Overlay1ColorMult = WP_YZMT_Settings.Get().Overlay1ColorMult;
+		float m_Overlay1LightMultFact = WP_YZMT_Settings.Get().Overlay1LightMultFact;
+		float m_Overlay1LightMultNoise = WP_YZMT_Settings.Get().Overlay1LightMultNoise;
 		
-		autoptr array<float> m_Overlay2ColorSet = { 0.0,0.0,0.0,0 };
-		float m_Overlay2OverlayFactor = 0.3;
-		float m_ColorOffset2ndLayer = -0.030;
-		float m_OverlayFactor2ndLayer = 0.06;
+		autoptr array<float> m_Overlay2ColorSet = WP_YZMT_Settings.Get().Overlay2ColorSet;
+		float m_Overlay2OverlayFactor = WP_YZMT_Settings.Get().Overlay2OverlayFactor;
+		float m_ColorOffset2ndLayer = WP_YZMT_Settings.Get().ColorOffset2ndLayer;
+		float m_OverlayFactor2ndLayer = WP_YZMT_Settings.Get().OverlayFactor2ndLayer;
 		
 		
-		float m_DefaultNVOpticContrast = 1.3;
-		float m_DefaultNVOpticLightMult = 2.0;
-		float m_DefaultNVOpticLightNoise = 0.35;
-		float m_DefaultNVOpticLightOffset = -0.045;
-		float m_DefaultNVOpticLightOverlayFac = 0.070;
+		float m_DefaultNVOpticContrast = WP_YZMT_Settings.Get().DefaultNVOpticContrast;
+		float m_DefaultNVOpticLightMult = WP_YZMT_Settings.Get().DefaultNVOpticLightMult;
+		float m_DefaultNVOpticLightNoise = WP_YZMT_Settings.Get().DefaultNVOpticLightNoise;
+		float m_DefaultNVOpticLightOffset = WP_YZMT_Settings.Get().DefaultNVOpticLightOffset;
+		float m_DefaultNVOpticLightOverlayFac = WP_YZMT_Settings.Get().DefaultNVOpticLightOverlayFac;
 		
-		autoptr array<float> m_DaytimeNVOpticOverlayColor = { 0.0, 0.48, 0.55, 0 };
-		float m_DaytimeNVOpticOverlayFactor = 0.6;
-		float m_DaytimeNVOpticLightOffset = -0.1;
-		float m_DaytimeNVOpticLightMult = 1.0;
-		float m_DaytimeNVOpticLightNoise = 0.6;
+		autoptr array<float> m_DaytimeNVOpticOverlayColor = WP_YZMT_Settings.Get().DaytimeNVOpticOverlayColor;
+		float m_DaytimeNVOpticOverlayFactor = WP_YZMT_Settings.Get().DaytimeNVOpticOverlayFactor;
+		float m_DaytimeNVOpticLightOffset = WP_YZMT_Settings.Get().DaytimeNVOpticLightOffset;
+		float m_DaytimeNVOpticLightMult = WP_YZMT_Settings.Get().DaytimeNVOpticLightMult;
+		float m_DaytimeNVOpticLightNoise = WP_YZMT_Settings.Get().DaytimeNVOpticLightNoise;
 		
 		switch (mode)
 		{

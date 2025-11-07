@@ -1,8 +1,8 @@
 class WP_YZMT_Settings
 {
-	static ref WP_YZMT_Settings instance;
-
 	// ===== JSON-controlled variables =====
+	bool AllowLiveEdits = false;
+
 	ref array<float> OverlayColor;
 	ref array<float> OverlayColor2ndLayer;
 	ref array<float> OverlayColorDaytime;
@@ -43,7 +43,7 @@ class WP_YZMT_Settings
 	float DaytimeNVOpticLightMult;
 	float DaytimeNVOpticLightNoise;
 
-	// ===== Singleton =====
+	static ref WP_YZMT_Settings instance;
 	static WP_YZMT_Settings Get()
 	{
 		if (!instance)
@@ -54,7 +54,6 @@ class WP_YZMT_Settings
 		return instance;
 	}
 
-	// ===== Load / Save =====
 	void Load()
 	{
 		string configPath = "$profile:WP_YZMT\\WP_YZMT_config.json";
@@ -64,12 +63,14 @@ class WP_YZMT_Settings
 			WP_YZMT_Settings loadedData = new WP_YZMT_Settings;
 			JsonFileLoader<WP_YZMT_Settings>.JsonLoadFile(configPath, loadedData);
 
+			AllowLiveEdits = loadedData.AllowLiveEdits;
+
 			OverlayColor              = CopyOrDefault(loadedData.OverlayColor,              DefaultOverlayColor());
 			OverlayColor2ndLayer      = CopyOrDefault(loadedData.OverlayColor2ndLayer,      DefaultOverlayColor2ndLayer());
 			OverlayColorDaytime       = CopyOrDefault(loadedData.OverlayColorDaytime,       DefaultOverlayColorDaytime());
 			OverlayColorOptics        = CopyOrDefault(loadedData.OverlayColorOptics,        DefaultOverlayColorOptics());
 
-			DesaturationAmt           = SetOrDefault(loadedData.DesaturationAmt,            0.175);
+			DesaturationAmt           = SetOrDefault(loadedData.DesaturationAmt,            0.18);
 			DesaturationAmtDaytime    = SetOrDefault(loadedData.DesaturationAmtDaytime,     0.3);
 			FilmGrainSharpness        = SetOrDefault(loadedData.FilmGrainSharpness,         4.8);
 			FilmGrainSharpnessDaytime = SetOrDefault(loadedData.FilmGrainSharpnessDaytime,  5.7);
@@ -78,7 +79,7 @@ class WP_YZMT_Settings
 			FilmGrainFrequency        = SetOrDefault(loadedData.FilmGrainFrequency,         1.0);
 			FilmGrainFrequencyOptics  = SetOrDefault(loadedData.FilmGrainFrequencyOptics,   1.0);
 			FilmGrainFrequencyDaytime = SetOrDefault(loadedData.FilmGrainFrequencyDaytime,  8.0);
-			LightIntensityAmp_NV      = SetOrDefault(loadedData.LightIntensityAmp_NV,       5.8);
+			LightIntensityAmp_NV      = SetOrDefault(loadedData.LightIntensityAmp_NV,       4.1);
 			LightIntensityAmp_Daytime = SetOrDefault(loadedData.LightIntensityAmp_Daytime,  2.5);
 
 			DefaultGogglesContrast    = SetOrDefault(loadedData.DefaultGogglesContrast,     0.85);
@@ -119,15 +120,16 @@ class WP_YZMT_Settings
 		JsonFileLoader<WP_YZMT_Settings>.JsonSaveFile(configPath, this);
 	}
 
-	// ===== Defaults =====
 	void SetDefaults()
 	{
-		OverlayColor              = DefaultOverlayColor();
-		OverlayColor2ndLayer      = DefaultOverlayColor2ndLayer();
-		OverlayColorDaytime       = DefaultOverlayColorDaytime();
-		OverlayColorOptics        = DefaultOverlayColorOptics();
+		AllowLiveEdits          = true;
 
-		DesaturationAmt           = 0.175;
+		OverlayColor            = DefaultOverlayColor();
+		OverlayColor2ndLayer    = DefaultOverlayColor2ndLayer();
+		OverlayColorDaytime     = DefaultOverlayColorDaytime();
+		OverlayColorOptics      = DefaultOverlayColorOptics();
+
+		DesaturationAmt           = 0.18;
 		DesaturationAmtDaytime    = 0.3;
 		FilmGrainSharpness        = 4.8;
 		FilmGrainSharpnessDaytime = 5.7;
@@ -180,7 +182,7 @@ class WP_YZMT_Settings
 	}
 
 	// Default arrays
-	ref array<float> DefaultOverlayColor()               { return { 0.0, 0.22, 0.27, 0.0 }; }
+	ref array<float> DefaultOverlayColor()               { return { 0.0, 0.23, 0.28, 0.0 }; }
 	ref array<float> DefaultOverlayColor2ndLayer()       { return { 0.0, 0.22, 0.27, 0.0 }; }
 	ref array<float> DefaultOverlayColorDaytime()        { return { 0.0, 0.10, 0.27, 1.0 }; }
 	ref array<float> DefaultOverlayColorOptics()         { return { 0.0, 0.24, 0.27, 0.0 }; }
