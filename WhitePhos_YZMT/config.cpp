@@ -21,7 +21,7 @@ class CfgMods
 		credits = "";
 		author = "Comrade Sythar";
 		authorID = "0";
-		version = "0.95";
+		version = "0.96";
 		extra = 0;
 		type = "mod";
 		dependencies[] = { "Game" };

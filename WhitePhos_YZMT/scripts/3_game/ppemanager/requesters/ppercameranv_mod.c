@@ -14,6 +14,8 @@ modded class PPERequester_CameraNV extends PPERequester_GameplayBase
 		SetTargetValueFloat(PPEExceptions.EYEACCOM,PPEEyeAccomodationNative.PARAM_INTENSITY,false,6.0 ,PPEEyeAccomodationNative.L_0_NVG_GENERIC,PPOperators.SET);
 		#endif
 		
+		
+		
 		///////////////////////////////
 		//Basic Configs
 		
@@ -62,6 +64,7 @@ modded class PPERequester_CameraNV extends PPERequester_GameplayBase
 		{
 			case NV_NO_BATTERY: //battery off
 			//////////////////////
+			
 			//This essentially established the defaults. It is also what you see through unpowered night vision optics
 				SetTargetValueColor(PostProcessEffectType.Glow,PPEGlow.PARAM_COLORIZATIONCOLOR,m_Overlay1ColorMult,PPEGlow.L_23_NVG,PPOperators.MULTIPLICATIVE);
 				SetTargetValueFloat(PostProcessEffectType.Glow,PPEGlow.PARAM_SATURATION,true,m_DesaturationAmt,PPEGlow.L_01_NVG_DESAT,PPOperators.LOWEST);	
@@ -80,6 +83,11 @@ modded class PPERequester_CameraNV extends PPERequester_GameplayBase
 			break;
 			
 			case NV_DEFAULT_OPTICS: //NV optic (weapons etc) on
+			
+				#ifdef namalsk_scripts
+				SetTargetValueFloat( PPEExceptions.EYEACCOM, PPEEyeAccomodationNative.PARAM_INTENSITY, false, 25, 550, PPOperators.SET );
+				#endif
+			
 				SetTargetValueColor(PostProcessEffectType.Glow,PPEGlow.PARAM_COLORIZATIONCOLOR,m_OverlayColorOptics,PPEGlow.L_23_NVG,PPOperators.MULTIPLICATIVE);
 				SetTargetValueFloat(PostProcessEffectType.Glow,PPEGlow.PARAM_CONTRAST,m_DefaultNVOpticContrast,PPEGlow.L_23_NVG,PPOperators.HIGHEST);
 				SetTargetValueFloat(PostProcessEffectType.Glow,PPEGlow.PARAM_SATURATION,true,m_DesaturationAmt,PPEGlow.L_01_NVG_DESAT,PPOperators.LOWEST); 
@@ -100,6 +108,11 @@ modded class PPERequester_CameraNV extends PPERequester_GameplayBase
 			break;
 			
 			case NV_DAYTIME_OPTICS: //NV optic in daytime mode
+				
+				#ifdef namalsk_scripts
+				SetTargetValueFloat( PPEExceptions.EYEACCOM, PPEEyeAccomodationNative.PARAM_INTENSITY, false, 1.5, 550, PPOperators.SET );
+				#endif
+			
 				SetTargetValueColor(PostProcessEffectType.Glow,PPEGlow.PARAM_COLORIZATIONCOLOR,m_OverlayColorDaytime,PPEGlow.L_23_NVG,PPOperators.MULTIPLICATIVE);
 				SetTargetValueFloat(PostProcessEffectType.Glow,PPEGlow.PARAM_OFFSET,false,m_DaytimeNVOpticLightOffset,PPEGlow.L_23_NVG,PPOperators.SET);
 				SetTargetValueFloat(PostProcessEffectType.Glow,PPEGlow.PARAM_SATURATION,true,m_DesaturationAmtDaytime,PPEGlow.L_01_NVG_DESAT,PPOperators.LOWEST); 
@@ -117,6 +130,11 @@ modded class PPERequester_CameraNV extends PPERequester_GameplayBase
 			break;
 			
 			case NV_DEFAULT_GLASSES: //goggles on
+				
+				#ifdef namalsk_scripts
+				SetTargetValueFloat( PPEExceptions.EYEACCOM, PPEEyeAccomodationNative.PARAM_INTENSITY, false, 10, 550, PPOperators.SET );
+				#endif
+				
 				SetTargetValueColor(PostProcessEffectType.Glow,PPEGlow.PARAM_COLORIZATIONCOLOR,m_OverlayColor,PPEGlow.L_23_NVG,PPOperators.MULTIPLICATIVE);
 				
 				SetTargetValueFloat(PostProcessEffectType.Glow,PPEGlow.PARAM_CONTRAST,m_DefaultGogglesContrast,PPEGlow.L_23_NVG,PPOperators.HIGHEST);
@@ -140,6 +158,11 @@ modded class PPERequester_CameraNV extends PPERequester_GameplayBase
 			
 			
 			case NV_PUMPKIN: //pumpkin-o-vision
+			
+				#ifdef namalsk_scripts
+				SetTargetValueFloat( PPEExceptions.EYEACCOM, PPEEyeAccomodationNative.PARAM_INTENSITY, false, 5, 550, PPOperators.SET );
+				#endif
+				
 				SetTargetValueColor(PostProcessEffectType.Glow,PPEGlow.PARAM_COLORIZATIONCOLOR,{1.0,0.2,0.0,0.0},PPEGlow.L_23_NVG,PPOperators.MULTIPLICATIVE);
 				SetTargetValueFloat(PPEExceptions.EXPOSURE,PPEExposureNative.PARAM_INTENSITY,false,5.5 * UGExposureCoef,PPEExposureNative.L_0_NVG_GOGGLES,PPOperators.ADD);
 				SetTargetValueFloatDefault(PostProcessEffectType.FilmGrain,PPEFilmGrain.PARAM_SHARPNESS);
